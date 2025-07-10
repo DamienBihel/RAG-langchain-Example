@@ -18,13 +18,15 @@ RAG-langchain-Example/
 ### Relations entre les Fichiers
 
 ```mermaid
-main.py (Original)
-    ↓
-rag_strategies.py (Stratégies)
-    ↓  
-enhanced_rag_app.py (Application Avancée)
-    ↓
-test_rag_modes.py (Tests)
+graph TD
+    A[main.py - Original] --> B[rag_strategies.py - Stratégies]
+    B --> C[enhanced_rag_app.py - Application Avancée]
+    C --> D[test_rag_modes.py - Tests]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
 ```
 
 ### Rôle de Chaque Fichier
