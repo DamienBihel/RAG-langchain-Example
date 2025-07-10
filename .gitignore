@@ -243,4 +243,18 @@ cache/
 
 # Fichiers de données sensibles
 data/sensitive/
-secrets/ 
+secrets/
+
+# Base vectorielle Qdrant
+qdrant_data/
+
+# Documents utilisateur
+documents/pdf/*.pdf
+documents/markdown/*.md
+documents/markdown/*.markdown
+documents/web/*
+# Garder la structure des dossiers
+!documents/pdf/.gitkeep
+!documents/markdown/.gitkeep
+!documents/web/.gitkeep
+!documents/README.md

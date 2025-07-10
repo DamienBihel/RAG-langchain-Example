@@ -6,6 +6,7 @@ Application RAG (Retrieval-Augmented Generation) complète et modulaire utilisan
 
 ## ✨ Fonctionnalités
 
+### Fonctionnalités de Base
 - **Chargement de documents web** avec BeautifulSoup
 - **Découpage intelligent** en chunks avec chevauchement
 - **Génération d'embeddings** avec OpenAI text-embedding-3-small
@@ -13,6 +14,14 @@ Application RAG (Retrieval-Augmented Generation) complète et modulaire utilisan
 - **Recherche sémantique** par similarité cosinus
 - **Génération de réponses** avec GPT-4o-mini
 - **Architecture modulaire** et extensible
+
+### 🚀 Nouveautés : Modes RAG Avancés
+- **4 stratégies RAG** : Naive, Hybrid, Corrective, Self-Reflective
+- **Changement dynamique** de mode selon vos besoins
+- **Comparaison automatique** entre stratégies
+- **Métriques de performance** détaillées
+- **Tests et benchmarks** intégrés
+- **Interface unifiée** pour tous les modes
 
 ## 🛠️ Technologies
 
@@ -46,11 +55,19 @@ Application RAG (Retrieval-Augmented Generation) complète et modulaire utilisan
 
 3. **Installer les dépendances**
    ```bash
+   pip install -r requirements.txt
+   ```
+   
+   Ou installation manuelle :
+   ```bash
    pip install -qU "langchain[openai]"
    pip install -qU langchain-qdrant
    pip install python-dotenv
    pip install beautifulsoup4
    pip install langchain-community
+   
+   # Pour les modes RAG avancés
+   pip install rank-bm25 sentence-transformers duckduckgo-search
    ```
 
 4. **Configurer les variables d'environnement**
@@ -62,44 +79,98 @@ Application RAG (Retrieval-Augmented Generation) complète et modulaire utilisan
 
 ## 🚀 Utilisation
 
-### Exécution simple
+### Exécution simple (mode original)
 
 ```bash
 python main.py
 ```
 
+### 🎯 Modes RAG Avancés
+
+```bash
+# Test interactif des modes
+python test_rag_modes.py --interactive
+
+# Comparaison automatique
+python test_rag_modes.py
+
+# Benchmark complet
+python test_rag_modes.py --benchmark
+```
+
 ### Utilisation programmatique
 
+#### Mode Original
 ```python
 from main import RAGApplication
 
-# Créer l'application
 app = RAGApplication()
-
-# Configuration
 app.setup_environment()
 app.initialize_models()
 app.setup_vector_store()
 
-# Charger des documents
 documents = app.load_and_process_documents("https://example.com/article")
 app.populate_vector_store(documents)
 
-# Poser une question
 response, sources = app.ask_question("Quelle est la question ?")
 print(response)
 ```
+
+#### Modes Avancés
+```python
+from enhanced_rag_app import EnhancedRAGApplication
+
+# Initialisation avec mode par défaut
+app = EnhancedRAGApplication(default_strategy='hybrid')
+app.setup_environment()
+app.initialize_models()
+app.setup_vector_store()
+app.initialize_strategies()
+
+# Chargement documents
+documents = app.load_and_process_documents("https://example.com/article")
+app.populate_vector_store(documents)
+
+# Changement de mode et utilisation
+app.set_strategy('corrective')  # ou 'hybrid', 'reflective', 'naive'
+result = app.ask_question("Votre question")
+
+# Comparaison entre modes
+comparison = app.compare_strategies("Votre question")
+print(f"Meilleure stratégie: {comparison.best_strategy}")
+```
+
+### 📖 Guide Détaillé
+
+Pour une documentation complète de l'architecture et des modes avancés, consultez :
+- **[QUICK_START_GUIDE.md](QUICK_START_GUIDE.md)** - Guide complet avec architecture
+- **[RAG_MODES_ANALYSIS.md](RAG_MODES_ANALYSIS.md)** - Analyse détaillée des modes
 
 ## 📁 Structure du projet
 
 ```
 RAG-langchain-Exampke/
-├── main.py              # Application RAG principale
-├── .env                 # Variables d'environnement (non versionné)
-├── .gitignore          # Fichiers ignorés par Git
-├── README.md           # Documentation du projet
-└── requirements.txt    # Dépendances Python
+├── main.py                    # 🏠 Application RAG originale (mode Naive)
+├── rag_strategies.py          # 🧠 Stratégies RAG (Pattern Strategy)
+├── enhanced_rag_app.py        # 🚀 Application améliorée (tous modes)
+├── test_rag_modes.py          # 🧪 Tests et comparaisons des modes
+├── display_documents.py       # 👁️ Affichage des documents
+├── load_documents.py          # 📥 Chargement de documents
+├── example_usage.py           # 📚 Exemples d'utilisation
+├── RAG_MODES_ANALYSIS.md      # 📊 Analyse détaillée des modes
+├── QUICK_START_GUIDE.md       # 🚀 Guide complet avec architecture
+├── .env                       # Variables d'environnement (non versionné)
+├── .gitignore                # Fichiers ignorés par Git
+├── README.md                 # Documentation du projet
+└── requirements.txt          # Dépendances Python (base + avancées)
 ```
+
+### Fichiers Principaux
+
+- **`main.py`** : Application RAG de base (compatible avec votre code existant)
+- **`enhanced_rag_app.py`** : Version avancée avec support multi-modes
+- **`rag_strategies.py`** : Implémentation des 4 stratégies RAG
+- **`test_rag_modes.py`** : Scripts de test et benchmark
 
 ## 🔒 Sécurité
 

@@ -17,8 +17,32 @@ qdrant-client>=1.7.0
 beautifulsoup4>=4.13.0
 soupsieve>=2.7.0
 
+# Parsing de documents (PDF et Markdown)
+pypdf>=4.0.0
+pdfplumber>=0.11.0
+unstructured[pdf,md]>=0.10.0
+markdown-it-py>=3.0.0
+
 # Gestion des variables d'environnement
 python-dotenv>=1.1.0
+
+# ============================================================================
+# NOUVELLES DEPENDANCES POUR LES MODES RAG AVANCÉS
+# ============================================================================
+
+# Recherche hybride (BM25 + vectoriel)
+rank-bm25>=0.2.2
+
+# Évaluation et reranking
+sentence-transformers>=2.2.2
+transformers>=4.21.0
+
+# Recherche web de secours pour Corrective RAG
+duckduckgo-search>=3.9.0
+requests>=2.31.0
+
+# Cross-encoders pour l'évaluation de pertinence
+torch>=2.0.0  # Requis pour sentence-transformers
 
 # ============================================================================
 # DEPENDANCES OPTIONNELLES (pour le développement)
